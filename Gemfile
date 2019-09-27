@@ -45,6 +45,8 @@ group :development do
   # rubocop
   gem "rubocop", "0.70.0"
   gem "rubocop-github", "0.13.0"
+  # annotate
+  gem "annotate", "2.7.5"
 end
 
 group :test do
