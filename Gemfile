@@ -43,16 +43,20 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   # rubocop
-  gem "rubocop", "0.70.0"
-  gem "rubocop-github", "0.13.0"
+  gem "rubocop", "0.70.0", require: false
+  gem "rubocop-github", "0.13.0", require: false
   # annotate
   gem "annotate", "2.7.5"
+  gem "brakeman", "4.6.1", require: false
+  gem "fasterer", "0.7.1", require: false
+  gem "strong_migrations", "0.4.1"
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 2.15"
   gem "selenium-webdriver"
+  gem "simplecov", require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
 end

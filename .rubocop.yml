@@ -2,3 +2,7 @@ inherit_gem:
   rubocop-github:
     - config/default.yml
     - config/rails.yml
+
+GitHub/RailsControllerRenderPathsExist:
+  # Doesn't seem to work; can't find templates that exist
+  Enabled: false
