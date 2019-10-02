@@ -14,4 +14,7 @@
 
 
 class LeaveEarning < ApplicationRecord
+    # Associations
+    has_many :leave_earning_consumptions, inverse_of: :leave_earning
+    has_many :leaves, through: :leave_earning_consumptions
 end

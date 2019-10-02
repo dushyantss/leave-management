@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_202926) do
+ActiveRecord::Schema.define(version: 2019_10_02_205804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 2019_10_02_202926) do
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "leave_id", null: false
+    t.bigint "leave_earning_id", null: false
+    t.index ["leave_earning_id"], name: "index_leave_earning_consumptions_on_leave_earning_id"
+    t.index ["leave_id"], name: "index_leave_earning_consumptions_on_leave_id"
   end
 
   create_table "leave_earnings", force: :cascade do |t|
@@ -111,6 +115,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_202926) do
   end
 
   add_foreign_key "leave_durations", "leaves", column: "leave_id"
+  add_foreign_key "leave_earning_consumptions", "leave_earnings"
+  add_foreign_key "leave_earning_consumptions", "leaves", column: "leave_id"
   add_foreign_key "leaves", "users"
   add_foreign_key "users", "users", column: "team_leader_id"
 end
