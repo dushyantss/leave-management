@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_114606) do
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_notification_groups_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +48,12 @@ ActiveRecord::Schema.define(version: 2019_10_02_114606) do
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["designation"], name: "index_users_on_designation"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["employee_code"], name: "index_users_on_employee_code", unique: true
+    t.index ["mobile"], name: "index_users_on_mobile", unique: true
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["user_group"], name: "index_users_on_user_group"
   end
 
 end

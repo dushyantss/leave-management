@@ -12,6 +12,10 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_notification_groups_on_title  (title) UNIQUE
+#
 
 require "test_helper"
 

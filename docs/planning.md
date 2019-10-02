@@ -3,10 +3,10 @@
 ## User
 * name
 * designation
-* email
-* mobile
+* email, unique
+* mobile, unique
 * dob
-* employee_code
+* employee_code, unique
 * joining_date
 * leaving_date, nullable
 * avatar, nullable
@@ -19,7 +19,7 @@
 * has_many Adjustments, dependent: :destroy
 
 ## NotificationGroup
-* title
+* title, unique
 * description, nullable
 * image, nullable
 

@@ -19,6 +19,15 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
+# Indexes
+#
+#  index_users_on_designation    (designation)
+#  index_users_on_email          (email) UNIQUE
+#  index_users_on_employee_code  (employee_code) UNIQUE
+#  index_users_on_mobile         (mobile) UNIQUE
+#  index_users_on_name           (name)
+#  index_users_on_user_group     (user_group)
+#
 
 
 require "test_helper"
