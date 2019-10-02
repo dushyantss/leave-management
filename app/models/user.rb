@@ -43,6 +43,6 @@ class User < ApplicationRecord
     belongs_to :team_leader, class_name: "User", foreign_key: "team_leader_id", optional: true, inverse_of: :team_members
     has_many :team_members, class_name: "User", foreign_key: "team_leader_id", dependent: :nullify, inverse_of: :team_leader
     has_and_belongs_to_many :notification_groups
-    has_many :leaves, dependent: destroy
+    has_many :leaves, dependent: destroy, inverse_of: :user
     has_many :adjustments, dependent: destroy
 end

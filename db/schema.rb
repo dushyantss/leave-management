@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_194917) do
+ActiveRecord::Schema.define(version: 2019_10_02_202509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_194917) do
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_leaves_on_user_id"
   end
 
   create_table "notification_groups", force: :cascade do |t|
@@ -106,5 +108,6 @@ ActiveRecord::Schema.define(version: 2019_10_02_194917) do
     t.index ["user_group"], name: "index_users_on_user_group"
   end
 
+  add_foreign_key "leaves", "users"
   add_foreign_key "users", "users", column: "team_leader_id"
 end
