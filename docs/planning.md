@@ -120,3 +120,13 @@
 * AUTH
     * CRUD - admin
     * R - user
+
+
+
+# TODOs
+* Add relations between models.
+* Add business logic for Leave, LeaveEarning, LeaveEarningConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
+* Add proper views and controller actions.
+* Add authentication.
+* Add authorization.
+* [implement lock_version properly in forms.](https://www.engineyard.com/blog/a-guide-to-optimistic-locking)

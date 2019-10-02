@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_123036) do
+ActiveRecord::Schema.define(version: 2019_10_02_194917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,12 +96,15 @@ ActiveRecord::Schema.define(version: 2019_10_02_123036) do
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "team_leader_id"
     t.index ["designation"], name: "index_users_on_designation"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["employee_code"], name: "index_users_on_employee_code", unique: true
     t.index ["mobile"], name: "index_users_on_mobile", unique: true
     t.index ["name"], name: "index_users_on_name"
+    t.index ["team_leader_id"], name: "index_users_on_team_leader_id"
     t.index ["user_group"], name: "index_users_on_user_group"
   end
 
+  add_foreign_key "users", "users", column: "team_leader_id"
 end
