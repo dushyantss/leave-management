@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class NotificationGroupsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class NotificationGroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create notification_group" do
-    assert_difference('NotificationGroup.count') do
+    assert_difference("NotificationGroup.count") do
       post notification_groups_url, params: { notification_group: {  } }
     end
 
@@ -39,7 +41,7 @@ class NotificationGroupsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy notification_group" do
-    assert_difference('NotificationGroup.count', -1) do
+    assert_difference("NotificationGroup.count", -1) do
       delete notification_group_url(@notification_group)
     end
 

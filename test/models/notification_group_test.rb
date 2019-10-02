@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notification_groups
@@ -11,7 +13,7 @@
 #  updated_at   :datetime         not null
 #
 
-require 'test_helper'
+require "test_helper"
 
 class NotificationGroupTest < ActiveSupport::TestCase
   # test "the truth" do

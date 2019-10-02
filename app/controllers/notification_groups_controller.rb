@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationGroupsController < ApplicationController
   before_action :set_notification_group, only: [:show, :edit, :update, :destroy]
 
@@ -28,10 +30,10 @@ class NotificationGroupsController < ApplicationController
 
     respond_to do |format|
       if @notification_group.save
-        format.html { redirect_to @notification_group, notice: 'Notification group was successfully created.' }
+        format.html { redirect_to @notification_group, notice: "Notification group was successfully created." }
         format.json { render :show, status: :created, location: @notification_group }
       else
-        format.html { render :new }
+        format.html { render "new" }
         format.json { render json: @notification_group.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +44,10 @@ class NotificationGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @notification_group.update(notification_group_params)
-        format.html { redirect_to @notification_group, notice: 'Notification group was successfully updated.' }
+        format.html { redirect_to @notification_group, notice: "Notification group was successfully updated." }
         format.json { render :show, status: :ok, location: @notification_group }
       else
-        format.html { render :edit }
+        format.html { render "edit" }
         format.json { render json: @notification_group.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +58,7 @@ class NotificationGroupsController < ApplicationController
   def destroy
     @notification_group.destroy
     respond_to do |format|
-      format.html { redirect_to notification_groups_url, notice: 'Notification group was successfully destroyed.' }
+      format.html { redirect_to notification_groups_url, notice: "Notification group was successfully destroyed." }
       format.json { head :no_content }
     end
   end

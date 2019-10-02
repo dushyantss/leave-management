@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateNotificationGroups < ActiveRecord::Migration[6.0]
   def change
     create_table :notification_groups do |t|
