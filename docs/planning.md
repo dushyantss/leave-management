@@ -42,21 +42,18 @@
 * belongs_to: Leave
 
 ## LeaveEarning
-* value(default: 40)
-* time_unit(default: hours)
+* value(default: 1.6667)
 * note, usually will be like `For July 2019`
 * expires_on, usually will be one year from creation
 
 ## LeaveEarningConsumption
 * value
-* time_unit
-
 * belongs_to: LeaveEarning
 * belongs_to: Leave
 
 ## Adjustment
 * reason
-* days
+* value
 
 * belongs_to: User
 

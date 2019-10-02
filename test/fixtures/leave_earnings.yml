@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 1.5
+  note: MyString
+  expires_on: 2019-10-02
+  lock_version: 1
+
+two:
+  value: 1.5
+  note: MyString
+  expires_on: 2019-10-02
+  lock_version: 1
