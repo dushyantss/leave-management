@@ -36,8 +36,8 @@
 
 ## LeaveDuration
 * type: {optional, normal}
-* from_date
-* to_date
+* start:date
+* end:date
 
 * belongs_to: Leave
 
