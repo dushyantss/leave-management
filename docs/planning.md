@@ -43,8 +43,9 @@
 
 ## LeaveEarning
 * value(default: 1.6667)
-* note, usually will be like `For July 2019`
 * expires_on, usually will be one year from creation
+
+* has_many: LeaveEarningConsumption
 
 ## LeaveEarningConsumption
 * value

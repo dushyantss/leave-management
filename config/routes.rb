@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :adjustments
   resources :leaves
   resources :notification_groups
   resources :users
