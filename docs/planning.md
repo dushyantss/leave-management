@@ -2,7 +2,9 @@
 
 ## User
 * name
+* designation
 * email
+* mobile
 * dob
 * employee_code
 * joining_date
