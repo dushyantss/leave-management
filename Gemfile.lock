@@ -62,6 +62,8 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
     ast (2.4.0)
+    audited (4.9.0)
+      activerecord (>= 4.2, < 6.1)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -242,6 +244,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (= 2.7.5)
+  audited (= 4.9.0)
   bootsnap (>= 1.4.2)
   brakeman (= 4.6.1)
   byebug
