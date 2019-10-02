@@ -21,7 +21,7 @@
 ## NotificationGroup
 * title
 * description, nullable
-* image
+* image, nullable
 
 * has_and_belongs_to_many User
 

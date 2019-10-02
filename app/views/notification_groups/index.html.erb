@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notification Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notification_groups.each do |notification_group| %>
+      <tr>
+        <td><%= link_to 'Show', notification_group %></td>
+        <td><%= link_to 'Edit', edit_notification_group_path(notification_group) %></td>
+        <td><%= link_to 'Destroy', notification_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Notification Group', new_notification_group_path %>
