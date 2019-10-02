@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @optional_holiday.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @optional_holiday.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @optional_holiday.date %>
+</p>
+
+<p>
+  <strong>Lock version:</strong>
+  <%= @optional_holiday.lock_version %>
+</p>
+
+<%= link_to 'Edit', edit_optional_holiday_path(@optional_holiday) %> |
+<%= link_to 'Back', optional_holidays_path %>
