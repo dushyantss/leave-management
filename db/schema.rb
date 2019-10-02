@@ -12,15 +12,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_120458) do
+ActiveRecord::Schema.define(version: 2019_10_02_123036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adjustments", force: :cascade do |t|
+    t.text "reason", null: false
+    t.float "value", null: false
+    t.integer "lock_version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "leave_durations", force: :cascade do |t|
     t.integer "type", default: 0, null: false
     t.date "start", null: false
     t.date "end", null: false
+    t.integer "lock_version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "leave_earning_consumptions", force: :cascade do |t|
+    t.float "value", null: false
+    t.integer "lock_version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "leave_earnings", force: :cascade do |t|
+    t.float "value", null: false
+    t.date "expires_on", null: false
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -43,6 +66,20 @@ ActiveRecord::Schema.define(version: 2019_10_02_120458) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["title"], name: "index_notification_groups_on_title", unique: true
+  end
+
+  create_table "notification_groups_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "notification_group_id", null: false
+  end
+
+  create_table "optional_holidays", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.date "date", null: false
+    t.integer "lock_version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

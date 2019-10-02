@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: adjustments
+#
+#  id           :bigint           not null, primary key
+#  lock_version :integer
+#  reason       :text             not null
+#  value        :float            not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
