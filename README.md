@@ -13,3 +13,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 * Comments on LeaveRequests
 * Half day leaves
 * Optional holidays based on location
+
+## Contribution Guidelines
+* Please ensure that there are relevant tests in the Pull Request.
+* I will setup a CI pipeline when I get the first external contribution.
