@@ -16,4 +16,3 @@ Office needs a leave management software. Took too long to decide which ready ma
 
 ## Contribution Guidelines
 * Please ensure that there are relevant tests in the Pull Request.
-* I will setup a CI pipeline when I get the first external contribution.
