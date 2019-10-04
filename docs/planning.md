@@ -124,8 +124,8 @@
 
 
 # TODOs
-* Add relations between models.
 * Add business logic for Leave, LeaveEarning, LeaveEarningConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
+* Add kaminari and ransack.
 * Add proper views and controller actions.
 * Add authentication.
 * Add authorization.
