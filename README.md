@@ -8,11 +8,12 @@ Office needs a leave management software. Took too long to decide which ready ma
 ## Test
 * bundle exec rails test
 
-## Planned Updates
-* Automatic optimized leave request creation based on given date range
-* Comments on LeaveRequests
-* Half day leaves
-* Optional holidays based on location
+## Planned Improvements
+* Add internationalization.
+* Automatic optimized leave request creation based on given date range.
+* Comments on LeaveRequests.
+* Half day leaves.
+* Optional holidays based on location.
 
 
 # TODOs
@@ -26,7 +27,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 * Add proper views and controller actions.
 * Add authentication.
 * Add authorization.
-* [implement lock_version properly in forms.](https://www.engineyard.com/blog/a-guide-to-optimistic-locking)
+* [implement lock_version properly in forms](https://www.engineyard.com/blog/a-guide-to-optimistic-locking).
 
 ## Contribution Guidelines
 * Please ensure that there are relevant tests in the Pull Request.
