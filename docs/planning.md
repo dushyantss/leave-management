@@ -42,19 +42,21 @@
 * belongs_to: Leave
 
 ## LeaveEarning
-* value(default: 1.6667)
+* value_numerator: integer
+* value_denominator: integer
+* type: {optional, normal}
 * expires_on, usually will be one year from creation
 
 * has_many: LeaveEarningConsumption
 
 ## LeaveEarningConsumption
-* value
+* value: integer
 * belongs_to: LeaveEarning
 * belongs_to: Leave
 
 ## Adjustment
 * reason
-* value
+* value: integer
 
 * belongs_to: User
 
@@ -81,10 +83,9 @@
 ## Leave
 * The most complicated part business logic wise so we break it up as much as we can.
 * CREATE
-    * We will calculate optional holidays based on calendar year and normal holidays based on the last year or since the user's joining_date, whichever is earlier.
-    * 5 optional holidays/year and 20 normal holidays per year. normal holidays are earned on a per month basis and thus users earn 1.67/month.
-    * When we get an optional holiday duration, we just need to look at all the other optional holiday durations where leave status is pending or accepted for the user and ensure that the total count including the date range for this duration do not exceed 5. We also ensure that the date range actually includes only optional holidays(we check using the optional holidays model). I guess these validations will go into the LeaveDuration model.
-    * When we get a normal holidays duration, we need to look at all the consumptions of unexpired leave earnings and ensure that we have enough days left to give to this holiday. This one will also go into the leave duration model.
+    * We will calculate holidays based on the last year or since the user's joining_date, whichever is earlier.
+    * 5 optional holidays/year and 20 normal holidays per year. holidays are earned on a per month basis and thus users earn 20/12 per month normal holidays and 5/12 per month optional holidays.
+    * When we get a holidays duration, we need to look at all the consumptions of unexpired leave earnings and ensure that we have enough days left to give to this holiday. This one will also go into the leave duration model.
 * UPDATE
     * [We will ensure that we do not update a stale Leave.](https://api.rubyonrails.org/classes/ActiveRecord/Locking/Optimistic.html).
     * Will have the same checks for leaves as in CREATE.
@@ -108,6 +109,7 @@
 
 ## LeaveEarningConsumption
 * This will hold all the consumption entries for leave earnings and in which leave were they consumed.
+* This will be required in the calculation of the available leaves.
 * AUTH - R - admin, team_leader, owner of leave
 
 ## Adjustment
