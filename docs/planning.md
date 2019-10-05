@@ -50,7 +50,8 @@
 * has_many: LeaveEarningConsumption
 
 ## LeaveEarningConsumption
-* value: integer
+* value_numerator: integer
+* value_denominator: integer
 * belongs_to: LeaveEarning
 * belongs_to: Leave
 
