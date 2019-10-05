@@ -124,8 +124,12 @@
 
 
 # TODOs
+* Add proper time zone handling.
+* Add custom validators for date.
 * Add business logic for Leave, LeaveEarning, LeaveEarningConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
+* Add audited gem to all relevant models.
 * Add kaminari and ransack.
+* [Add simple forms. The docs also kinda explain how to use bootstrap](https://github.com/plataformatec/simple_form)
 * Add proper views and controller actions.
 * Add authentication.
 * Add authorization.
