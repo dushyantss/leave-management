@@ -17,7 +17,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 
 
 # TODOs
-* Make optional holidays pro-rated as well.
+* Update the rails migrations for value_numerator and value_denominator.(Use Rational class)
 * Add proper time zone handling.
 * Add custom validators for date.
 * Add business logic for Leave, LeaveEarning, LeaveEarningConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
