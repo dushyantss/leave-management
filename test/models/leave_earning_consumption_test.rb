@@ -4,13 +4,14 @@
 #
 # Table name: leave_earning_consumptions
 #
-#  id               :bigint           not null, primary key
-#  lock_version     :integer
-#  value            :float            not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  leave_earning_id :bigint           not null
-#  leave_id         :bigint           not null
+#  id                :bigint           not null, primary key
+#  lock_version      :integer
+#  value_denominator :bigint           not null
+#  value_numerator   :bigint           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  leave_earning_id  :bigint           not null
+#  leave_id          :bigint           not null
 #
 # Indexes
 #
