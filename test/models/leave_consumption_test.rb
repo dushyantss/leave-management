@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: leave_earning_consumptions
+# Table name: leave_consumptions
 #
 #  id                :bigint           not null, primary key
 #  lock_version      :integer
@@ -15,8 +15,8 @@
 #
 # Indexes
 #
-#  index_leave_earning_consumptions_on_leave_earning_id  (leave_earning_id)
-#  index_leave_earning_consumptions_on_leave_id          (leave_id)
+#  index_leave_consumptions_on_leave_earning_id  (leave_earning_id)
+#  index_leave_consumptions_on_leave_id          (leave_id)
 #
 # Foreign Keys
 #
@@ -25,8 +25,10 @@
 #
 
 
-class LeaveEarningConsumption < ApplicationRecord
-    # Associations
-    belongs_to :leave, inverse_of: :leave_earning_consumptions
-    belongs_to :leave_earning, inverse_of: :leave_earning_consumptions
+require "test_helper"
+
+class LeaveConsumptionTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

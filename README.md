@@ -9,6 +9,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 * bundle exec rails test
 
 ## Planned Improvements
+* Different optional holidays for different offices.
 * Add internationalization.
 * Automatic optimized leave request creation based on given date range.
 * Comments on LeaveRequests.
@@ -17,11 +18,10 @@ Office needs a leave management software. Took too long to decide which ready ma
 
 
 # TODOs
-* Update the rails migrations for value_numerator and value_denominator.
-* Use Rational class for LeaveEarning and LeaveEarningConsumption calculation as the values would be in weird decimals otherwise.
+* Use Rational class for LeaveEarning and LeaveConsumption calculation as the values would be in weird decimals otherwise.
 * Add proper time zone handling.
 * Add custom validators for date.
-* Add business logic for Leave, LeaveEarning, LeaveEarningConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
+* Add business logic for Leave, LeaveEarning, LeaveConsumption and related Adjustment and OptionalHoliday. Also, the usage of Users and NotificationGroups.
 * Add audited gem to all relevant models.
 * Add kaminari and ransack.
 * [Add simple forms. The docs also kinda explain how to use bootstrap](https://github.com/plataformatec/simple_form)

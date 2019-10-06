@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
-# Table name: leave_earning_consumptions
+# Table name: leave_consumptions
 #
 #  id                :bigint           not null, primary key
 #  lock_version      :integer
@@ -13,8 +15,8 @@
 #
 # Indexes
 #
-#  index_leave_earning_consumptions_on_leave_earning_id  (leave_earning_id)
-#  index_leave_earning_consumptions_on_leave_id          (leave_id)
+#  index_leave_consumptions_on_leave_earning_id  (leave_earning_id)
+#  index_leave_consumptions_on_leave_id          (leave_id)
 #
 # Foreign Keys
 #
@@ -22,12 +24,13 @@
 #  fk_rails_...  (leave_id => leaves.id)
 #
 
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  value: 1.5
-  lock_version: 1
+class LeaveConsumption < ApplicationRecord
+    # Associations
+    belongs_to :leave, inverse_of: :leave_consumptions
+    belongs_to :leave_earning, inverse_of: :leave_consumptions
 
-two:
-  value: 1.5
-  lock_version: 1
+    def value
+        Rational(value_numerator/value_denominator)
+    end
+end

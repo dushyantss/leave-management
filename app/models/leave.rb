@@ -28,6 +28,6 @@ class Leave < ApplicationRecord
     # Associations
     belongs_to :user, inverse_of: :leaves
     has_many :leave_durations, dependent: :destroy, inverse_of: :leave
-    has_many :leave_earning_consumptions, dependent: :destroy, inverse_of: :leave
-    has_many :leave_earnings, through: :leave_earning_consumptions
+    has_many :leave_consumptions, dependent: :destroy, inverse_of: :leave
+    has_many :leave_earnings, through: :leave_consumptions
 end

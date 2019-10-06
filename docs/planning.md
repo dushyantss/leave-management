@@ -1,3 +1,18 @@
+# Key User expectations
+
+* Leave Creation
+    * When creating a leave, user expects to see available leave inventory.
+    * Users need to be allowed to create back dated leaves.
+    * Leaves which remain pending, still consume inventory.
+    * There are two types of leaves normal and optional.
+    * There needs to be a provision to provide extra leaves for emergency events.
+    * Users might sometimes get special permissions where they use up future leaves. In that case, they should be allowed to create a leave which does not have inventory now but will consume inventory from the future. This might be the case for trying to align dates in holidays or in some emergency.
+    * If we make a matrix of the leaves' usages it comes out as follows
+        * Normal leaves usages - People use up leaves that they earned over time period. We take into consideration all the unexpired leaves and consume part of them for the leave.
+        * Emergency leaves - The user does not have sufficient holidays but they just have to take them. So, the system should keep track of the extra days that are being taken as leaves and keep track of them somewhere. Then, we can use up any new leave earnings to settle up this tab. We also need to allow system admins to create leave earnings with a note where people can take unpaid leaves.
+        * Back dated leaves - This will happen when the user either forgot to add leave, intentionally did not add leave and the mistake is being corrected now or they are creating same day leave due to being sick. In this case as well we need to allow this to happen.
+    * We will keep track of leaves consumed being more than leaves earned using the leaves model. We will sum the total leave duration and diff it with the leave consumption and if the result is non zero, that means that the person has taken more holidays than available.
+
 # Models
 
 ## User
@@ -16,7 +31,7 @@
 * has_many: team_members, reference to User, dependent: nullify
 * has_and_belongs_to_many NotificationGroup
 * has_many Leave, dependent: destroy
-* has_many Adjustments, dependent: :destroy
+* has_many LeaveEarning, dependent: :destroy
 
 ## NotificationGroup
 * title, unique
@@ -32,12 +47,12 @@
 
 * belongs_to: User
 * has_many: LeaveDuration, dependent: :destroy
-* has_many: LeaveEarningConsumption, dependent: :destroy
+* has_many: LeaveConsumption, dependent: :destroy
 
 ## LeaveDuration
 * type: {optional, normal}
-* start:date
-* end:date
+* start:datetime
+* end:datetime
 
 * belongs_to: Leave
 
@@ -45,21 +60,17 @@
 * value_numerator: integer
 * value_denominator: integer
 * type: {optional, normal}
+* reason: This will hold the reason for the earning
 * expires_on, usually will be one year from creation
 
-* has_many: LeaveEarningConsumption
+* belongs_to: User
+* has_many: LeaveConsumption
 
-## LeaveEarningConsumption
+## LeaveConsumption
 * value_numerator: integer
 * value_denominator: integer
 * belongs_to: LeaveEarning
 * belongs_to: Leave
-
-## Adjustment
-* reason
-* value: integer
-
-* belongs_to: User
 
 ## OptionalHoliday
 * title
@@ -102,21 +113,18 @@
 * Leaves handles all the CRUD for this model. If accessed from other places, only read should be allowed and that too will mostly be based on the status of the Leave.
 * AUTH
     * CRUD - admin, team_leader BUT ONLY THROUGH Leave
-    * R - owner of Leave
+    * R - owner of Leave BUT ONLY THROUGH Leave
 
 ## LeaveEarning
-* This is a dumb model that will just hold all the normal leaves that the system will generate for the user on a monthly basis.
-* AUTH - CR - admin
+* All the system generated and admin created leaves for a user are stored here.
+* AUTH
+    * CRUD - admin
+    * R - owner of leave, team_leader
 
-## LeaveEarningConsumption
+## LeaveConsumption
 * This will hold all the consumption entries for leave earnings and in which leave were they consumed.
 * This will be required in the calculation of the available leaves.
 * AUTH - R - admin, team_leader, owner of leave
-
-## Adjustment
-* Will be permanent additions to user's leaves, no time limit.
-* Most important use case is emergency leaves which go above the allowed limit. These might need to be adjusted if there are too many and the user needs more leaves.
-* AUTH - CRUD - admin
 
 ## OptionalHoliday
 * Basic table to hold required data for optional holidays.

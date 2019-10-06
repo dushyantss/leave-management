@@ -15,4 +15,5 @@
 
 
 class OptionalHoliday < ApplicationRecord
+    validates :title, presence: true
 end

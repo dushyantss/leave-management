@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,19 +12,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_210141) do
+ActiveRecord::Schema.define(version: 2019_10_06_184053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "adjustments", force: :cascade do |t|
-    t.text "reason", null: false
-    t.bigint "value", null: false
+  create_table "leave_consumptions", force: :cascade do |t|
+    t.bigint "value_numerator", null: false
+    t.bigint "value_denominator", null: false
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_adjustments_on_user_id"
+    t.bigint "leave_id", null: false
+    t.bigint "leave_earning_id", null: false
+    t.index ["leave_earning_id"], name: "index_leave_consumptions_on_leave_earning_id"
+    t.index ["leave_id"], name: "index_leave_consumptions_on_leave_id"
   end
 
   create_table "leave_durations", force: :cascade do |t|
@@ -36,25 +40,17 @@ ActiveRecord::Schema.define(version: 2019_10_02_210141) do
     t.index ["leave_id"], name: "index_leave_durations_on_leave_id"
   end
 
-  create_table "leave_earning_consumptions", force: :cascade do |t|
-    t.bigint "value_numerator", null: false
-    t.bigint "value_denominator", null: false
-    t.integer "lock_version"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "leave_id", null: false
-    t.bigint "leave_earning_id", null: false
-    t.index ["leave_earning_id"], name: "index_leave_earning_consumptions_on_leave_earning_id"
-    t.index ["leave_id"], name: "index_leave_earning_consumptions_on_leave_id"
-  end
-
   create_table "leave_earnings", force: :cascade do |t|
     t.bigint "value_numerator", null: false
     t.bigint "value_denominator", null: false
     t.date "expires_on", null: false
+    t.integer "type", default: 0, null: false
+    t.text "reason", null: false
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_leave_earnings_on_user_id"
   end
 
   create_table "leaves", force: :cascade do |t|
@@ -116,10 +112,10 @@ ActiveRecord::Schema.define(version: 2019_10_02_210141) do
     t.index ["user_group"], name: "index_users_on_user_group"
   end
 
-  add_foreign_key "adjustments", "users"
+  add_foreign_key "leave_consumptions", "leave_earnings"
+  add_foreign_key "leave_consumptions", "leaves", column: "leave_id"
   add_foreign_key "leave_durations", "leaves", column: "leave_id"
-  add_foreign_key "leave_earning_consumptions", "leave_earnings"
-  add_foreign_key "leave_earning_consumptions", "leaves", column: "leave_id"
+  add_foreign_key "leave_earnings", "users"
   add_foreign_key "leaves", "users"
   add_foreign_key "users", "users", column: "team_leader_id"
 end

@@ -6,6 +6,8 @@ class CreateLeaveEarnings < ActiveRecord::Migration[6.0]
       t.bigint :value_numerator, null: false
       t.bigint :value_denominator, null: false
       t.date :expires_on, null: false
+      t.integer :type, null: false, default: 0
+      t.text :reason, null: false
 
       t.integer :lock_version
       t.timestamps
