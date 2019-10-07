@@ -9,15 +9,14 @@ Office needs a leave management software. Took too long to decide which ready ma
 * bundle exec rails test
 
 ## Planned Improvements
+* Automatic optimized leave request creation based on given date range.
 * Different optional holidays for different offices.
 * Add internationalization.
-* Automatic optimized leave request creation based on given date range.
-* Comments on LeaveRequests.
+* Comments on Leaves.
 * Half day leaves.
-* Optional holidays based on location.
+* Remove team_leader and team_members. We will create a separate table to handle leave approval heirarchy. This is required as we might have cases of multiple leave_approvers and maybe the manager/team_leader are not the only ones allowed to approve leave. But mostly we'll be doing this as we don't want to include heirarchy details in the employees table. Heirarchy is a separate thing from an employee and thus should stay separate. The employee table is the business contract between the org and the person. The user table is the connection of an employee with the system. We need a separate table to handle the relations between various users. **This will only be done when the requirement for a more complex heirarchy arises.** No need for a separate table till then.
 
-
-# TODOs
+## TODOs
 * Rename User model to Employee. Then create a separate User model whose sole purpose is to use the system and thus store the credentials and other system related details, if any, and not any business details. We will also move the user type(normal, admin) to this model. We will alias employee attribute to employment_details.
 * Use Rational class for LeaveEarning and LeaveConsumption calculation as the values would be in weird decimals otherwise.
 * Add proper time zone handling.
