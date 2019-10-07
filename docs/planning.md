@@ -1,5 +1,6 @@
 # Key User expectations
 
+* Timezone handling. We will just keep everything in the UTC timezone and if/when we want the user to have different leaves for different time zones/office locations we'll add time zones to leaves and users and manage is that way.
 * Leave Creation
     * When creating a leave, user expects to see available leave inventory.
     * Users need to be allowed to create back dated leaves.
@@ -27,8 +28,8 @@
 * avatar, nullable
 * user_group: {normal(default), admin}
 
-* belongs_to: team_leader, reference to User, nullable - in which case that user is the boss
-* has_many: team_members, reference to User, dependent: nullify
+* belongs_to: direct_approver, reference to User, nullable - in which case that user is the boss
+* has_many: direct_requesters, reference to User, dependent: nullify
 * has_and_belongs_to_many NotificationGroup
 * has_many Leave, dependent: destroy
 * has_many LeaveEarning, dependent: :destroy
@@ -45,7 +46,7 @@
 * status_reason, nullable, but is required when status changes to rescinded, rejected or reversed
 * status: {pending, rescinded, rejected, approved, reversed}
 
-* belongs_to: User
+* belongs_to: User also alias as requester
 * has_many: LeaveDuration, dependent: :destroy
 * has_many: LeaveConsumption, dependent: :destroy
 
@@ -78,14 +79,14 @@
 * date
 
 # Business Logic
-* in AUTH wherever team_leader is mentioned, it is assumed that the team_leader of the team_leader and others who are higher in this linkage(team_leader->team_leader->team_leader and so on) are all allowed the same privilege.
+* in AUTH wherever direct_approver is mentioned, it is assumed that the direct_approver of the direct_approver and others who are higher in this linkage(direct_approver->direct_approver->direct_approver and so on) are all allowed the same privilege.
 
 ## User
 * Basic model which inherently does not do much, almost all of the business logic is going to be present in the create and update of Leave.
 * AUTH
     * CRUD - admin
-    * RU - owner - can only update the avatar
-    * R - team_leader
+    * RU - requester - can only update the avatar
+    * R - direct_approver
 
 ## NotificationGroup
 * Holds information of all the users that need to be sent information if one of the members in the notification group is on holiday.
@@ -105,26 +106,26 @@
 * DELETE - Only the admin can delete it and it must not cause much of an issue either way as will be auditing it.
 * AUTH
     * CRUD - admin
-    * CRU - owner - Cannot set status when creating. Can update only if status is pending, can update reason and leave durations completely, but can only update status from pending to rescinded.
-    * RU - team_leader - but can only update one attribute, the status, and that too only from pending to rejected, pending to approved and approved to reversed
+    * CRU - requester - Cannot set status when creating. Can update only if status is pending, can update reason and leave durations completely, but can only update status from pending to rescinded.
+    * RU - direct_approver - but can only update one attribute, the status, and that too only from pending to rejected, pending to approved and approved to reversed
 
 ## LeaveDuration
 * A dumb model just holding attributes.
 * Leaves handles all the CRUD for this model. If accessed from other places, only read should be allowed and that too will mostly be based on the status of the Leave.
 * AUTH
-    * CRUD - admin, team_leader BUT ONLY THROUGH Leave
-    * R - owner of Leave BUT ONLY THROUGH Leave
+    * CRUD - admin, direct_approver BUT ONLY THROUGH Leave
+    * R - requester of Leave BUT ONLY THROUGH Leave
 
 ## LeaveEarning
 * All the system generated and admin created leaves for a user are stored here.
 * AUTH
     * CRUD - admin
-    * R - owner of leave, team_leader
+    * R - requester of leave, direct_approver
 
 ## LeaveConsumption
 * This will hold all the consumption entries for leave earnings and in which leave were they consumed.
 * This will be required in the calculation of the available leaves.
-* AUTH - R - admin, team_leader, owner of leave
+* AUTH - R - admin, direct_approver, requester of leave
 
 ## OptionalHoliday
 * Basic table to hold required data for optional holidays.
