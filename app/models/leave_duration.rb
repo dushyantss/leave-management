@@ -24,8 +24,7 @@
 
 
 class LeaveDuration < ApplicationRecord
-    self.inheritance_column = nil
-    enum type: [:normal, :optional]
+    include LeaveType
 
     # Associations
     belongs_to :leave, inverse_of: :leave_durations

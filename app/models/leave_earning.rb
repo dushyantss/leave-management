@@ -26,8 +26,8 @@
 
 
 class LeaveEarning < ApplicationRecord
-    self.inheritance_column = nil
-    enum type: [:normal, :optional]
+    include LeaveType
+    include RationalValue
 
     # Associations
     belongs_to :user, inverse_of: :leave_earnings

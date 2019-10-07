@@ -26,6 +26,8 @@
 
 
 class LeaveConsumption < ApplicationRecord
+    include RationalValue
+
     # Associations
     belongs_to :leave_earning, inverse_of: :leave_consumptions
     belongs_to :leave, inverse_of: :leave_consumptions

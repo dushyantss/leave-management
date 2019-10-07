@@ -17,7 +17,6 @@ Office needs a leave management software. Took too long to decide which ready ma
 * Extract out the leave approver and requester heirarchy to allow multiple approvers for one user.
 
 ## TODOs
-* Use Rational class for LeaveEarning and LeaveConsumption calculation as the values would be in weird decimals otherwise.
 * Add custom validators for date.
 * Add business logic for Leave, LeaveEarning, LeaveConsumption and related Adjustment and OptionalHoliday. Also, the usage of Employees and NotificationGroups.
 * Add audited gem to all relevant models.
