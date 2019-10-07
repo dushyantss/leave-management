@@ -18,7 +18,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 
 
 # TODOs
-* Rename User model to Employee and team_leader to manager. Then create a separate User model whose sole purpose is to use the system and thus store the credentials and other system related details, if any, and not any business details. We will also move the user type(normal, admin) to this model. We will alias employee attribute to employment_details.
+* Rename User model to Employee. Then create a separate User model whose sole purpose is to use the system and thus store the credentials and other system related details, if any, and not any business details. We will also move the user type(normal, admin) to this model. We will alias employee attribute to employment_details.
 * Use Rational class for LeaveEarning and LeaveConsumption calculation as the values would be in weird decimals otherwise.
 * Add proper time zone handling.
 * Add custom validators for date.
