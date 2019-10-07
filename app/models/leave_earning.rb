@@ -28,6 +28,11 @@
 class LeaveEarning < ApplicationRecord
     include LeaveType
     include RationalValue
+    include ValidUser
+    include Reasonable
+
+    # Validations
+    validates :expires_on, date: true
 
     # Associations
     belongs_to :user, inverse_of: :leave_earnings

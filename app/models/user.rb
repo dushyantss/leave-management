@@ -30,7 +30,16 @@
 #
 
 class User < ApplicationRecord
-    enum user_group: [:normal, :admin]
+    USER_GROUPS = [:normal, :admin]
+    enum user_group: USER_GROUPS
+
+    # Validations
+    validates :designation, :email, :employee_code, :mobile, :name, presence: true
+    validates :dob, :joining_date, date: true
+    validates :leaving_date, date: true, if: -> { leaving_date.present? }
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates_presence_of :approver
+    validates_associated :approver
 
     # Associations
     belongs_to :approver, class_name: "User", optional: true, inverse_of: :requesters

@@ -3,9 +3,9 @@
 # Table name: leave_durations
 #
 #  id           :bigint           not null, primary key
-#  end          :date             not null
+#  end_date     :date             not null
 #  lock_version :integer
-#  start        :date             not null
+#  start_date   :date             not null
 #  type         :integer          default("normal"), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

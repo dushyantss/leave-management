@@ -28,6 +28,10 @@
 class LeaveConsumption < ApplicationRecord
     include RationalValue
 
+    # Validations
+    validates_presence_of :leave_earning, :leave
+    validates_associated :leave_earning, :leave
+
     # Associations
     belongs_to :leave_earning, inverse_of: :leave_consumptions
     belongs_to :leave, inverse_of: :leave_consumptions

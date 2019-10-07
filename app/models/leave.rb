@@ -23,10 +23,36 @@
 #
 
 class Leave < ApplicationRecord
-    enum status: [:pending, :rescinded, :rejected, :approved, :reversed]
+  STATUSES = [:pending, :rescinded, :rejected, :approved, :reversed]
+  enum status: STATUSES
 
-    # Associations
-    belongs_to :user, inverse_of: :leaves
-    has_many :leave_durations, inverse_of: :leave, dependent: :destroy
-    has_many :leave_consumptions, inverse_of: :leave, dependent: :destroy
+  include ValidUser
+  include Reasonable
+
+  # Validations
+  validates :status, inclusion: {in: STATUSES}
+  validate :status_reason, presence: true, if: -> { [:rescinded, :rejected, :reversed].include?(status) }
+  validate :status_update_is_valid
+
+  # Associations
+  belongs_to :user, inverse_of: :leaves
+  has_many :leave_durations, inverse_of: :leave, dependent: :destroy
+  has_many :leave_consumptions, inverse_of: :leave, dependent: :destroy
+
+  private
+
+  def status_update_is_valid
+    if status != status_was
+      bad_transitions = case status_was
+      when :pending
+        [:rejected, :reversed]
+      when :approved
+        [:pending, :rescinded, :rejected]
+      else
+        STATUSES
+      end
+
+      errors.add(:status, :invalid_transition) if bad_transitions.include?(status)
+    end
+  end
 end

@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_184759) do
 
   create_table "leave_durations", force: :cascade do |t|
     t.integer "type", default: 0, null: false
-    t.date "start", null: false
-    t.date "end", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.integer "lock_version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

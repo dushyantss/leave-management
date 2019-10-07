@@ -48,7 +48,7 @@ group :development do
   gem "rubocop", "0.70.0", require: false
   gem "rubocop-github", "0.13.0", require: false
   # annotate
-  gem "annotate", "2.7.5"
+  gem "annotate", "3.0.2"
   gem "brakeman", "4.6.1", require: false
   gem "fasterer", "0.7.1", require: false
   gem "strong_migrations", "0.4.1"
