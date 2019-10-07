@@ -1,5 +1,6 @@
 # Key User expectations
 
+* Timezone handling. We will just keep everything in the UTC timezone and if/when we want the user to have different leaves for different time zones/office locations we'll add time zones to leaves and users and manage is that way.
 * Leave Creation
     * When creating a leave, user expects to see available leave inventory.
     * Users need to be allowed to create back dated leaves.
