@@ -17,8 +17,8 @@ Office needs a leave management software. Took too long to decide which ready ma
 * Extract out the leave approver and requester heirarchy to allow multiple approvers for one user.
 
 ## TODOs
-* Add custom validators for date.
-* Add business logic for Leave, LeaveEarning, LeaveConsumption and related Adjustment and OptionalHoliday. Also, the usage of Employees and NotificationGroups.
+* Add unit tests for validations. This will ensure that we do not remove them in the future unknowingly.
+* Add business logic for Leave, LeaveEarning, LeaveConsumption and related OptionalHoliday.
 * Add audited gem to all relevant models.
 * Add kaminari and ransack.
 * [Add simple forms. The docs also kinda explain how to use bootstrap](https://github.com/plataformatec/simple_form)
