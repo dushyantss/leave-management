@@ -14,7 +14,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 * Add internationalization.
 * Comments on Leaves.
 * Half day leaves.
-* Remove direct_approver and direct_requesters. We will create a separate table to handle leave approval heirarchy. This is required as we might have cases of multiple leave_approvers and maybe the manager/team_leader are not the only ones allowed to approve leave. But mostly we'll be doing this as we don't want to include heirarchy details in the employees table. Heirarchy is a separate thing from an employee and thus should stay separate. The employee table is the business contract between the org and the person. The user table is the connection of an employee with the system. We need a separate table to handle the relations between various users. **This will only be done when the requirement for a more complex heirarchy arises.** No need for a separate table till then.
+* Extract out the leave approver and requester heirarchy to allow multiple direct_approvers for one user.
 
 ## TODOs
 * Restart from scratch for controllers, views, models and tests, i.e. everything business related. Just create models for now. Ensure that they capture all the required information. Add validations and other required things for them to work perfectly on their own. Then only will we start with controllers and other such things.
