@@ -28,13 +28,13 @@
 * avatar, nullable
 * user_group: {normal(default), admin}
 
-* belongs_to: direct_approver, reference to User, nullable - in which case that user is the boss
-* has_many: direct_requesters, reference to User, dependent: nullify
+* belongs_to: approver, reference to User, nullable - in which case that user is the boss
+* has_many: requesters, reference to User, dependent: nullify
 * has_and_belongs_to_many NotificationGroup
 * has_many Leave, dependent: destroy
 * has_many LeaveEarning, dependent: :destroy
 
-## NotificationGroup
+## NotificationGroup - not needed for now. We will send messages to the user's approver, their requesters and all the other users with same approver.
 * title, unique
 * description, nullable
 * image, nullable
@@ -79,14 +79,14 @@
 * date
 
 # Business Logic
-* in AUTH wherever direct_approver is mentioned, it is assumed that the direct_approver of the direct_approver and others who are higher in this linkage(direct_approver->direct_approver->direct_approver and so on) are all allowed the same privilege.
+* in AUTH wherever approver is mentioned, it is assumed that the approver of the approver and others who are higher in this linkage(approver->approver->approver and so on) are all allowed the same privilege.
 
 ## User
 * Basic model which inherently does not do much, almost all of the business logic is going to be present in the create and update of Leave.
 * AUTH
     * CRUD - admin
     * RU - requester - can only update the avatar
-    * R - direct_approver
+    * R - approver
 
 ## NotificationGroup
 * Holds information of all the users that need to be sent information if one of the members in the notification group is on holiday.
@@ -107,25 +107,25 @@
 * AUTH
     * CRUD - admin
     * CRU - requester - Cannot set status when creating. Can update only if status is pending, can update reason and leave durations completely, but can only update status from pending to rescinded.
-    * RU - direct_approver - but can only update one attribute, the status, and that too only from pending to rejected, pending to approved and approved to reversed
+    * RU - approver - but can only update one attribute, the status, and that too only from pending to rejected, pending to approved and approved to reversed
 
 ## LeaveDuration
 * A dumb model just holding attributes.
 * Leaves handles all the CRUD for this model. If accessed from other places, only read should be allowed and that too will mostly be based on the status of the Leave.
 * AUTH
-    * CRUD - admin, direct_approver BUT ONLY THROUGH Leave
+    * CRUD - admin, approver BUT ONLY THROUGH Leave
     * R - requester of Leave BUT ONLY THROUGH Leave
 
 ## LeaveEarning
 * All the system generated and admin created leaves for a user are stored here.
 * AUTH
     * CRUD - admin
-    * R - requester of leave, direct_approver
+    * R - requester of leave, approver
 
 ## LeaveConsumption
 * This will hold all the consumption entries for leave earnings and in which leave were they consumed.
 * This will be required in the calculation of the available leaves.
-* AUTH - R - admin, direct_approver, requester of leave
+* AUTH - R - admin, approver, requester of leave
 
 ## OptionalHoliday
 * Basic table to hold required data for optional holidays.
