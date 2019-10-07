@@ -18,7 +18,7 @@ Office needs a leave management software. Took too long to decide which ready ma
 
 ## TODOs
 * Restart from scratch for controllers, views, models and tests, i.e. everything business related. Just create models for now. Ensure that they capture all the required information. Add validations and other required things for them to work perfectly on their own. Then only will we start with controllers and other such things.
-* Rename User model to Employee. Then create a separate User model whose sole purpose is to use the system and thus store the credentials and other system related details, if any, and not any business details. We will also move the user type(normal, admin) to this model. We will alias employee attribute to employment_details.
+* Rename User model to Employee. Rename team_leader to manager and team_members to managees/team/staff. Then create a separate User model whose sole purpose is to use the system and thus store the credentials and other system related details, if any, and not any business details. We will also move the user type(normal, admin) to this model. We will alias employee attribute to employment_details.
 * Use Rational class for LeaveEarning and LeaveConsumption calculation as the values would be in weird decimals otherwise.
 * Add custom validators for date.
 * Add business logic for Leave, LeaveEarning, LeaveConsumption and related Adjustment and OptionalHoliday. Also, the usage of Employees and NotificationGroups.
