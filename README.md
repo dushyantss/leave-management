@@ -1,3 +1,6 @@
+# Notice
+Project on hold as we are considering a paid product instead and my requirement for rails practise is being met at the office itself. If anyone would like me to continue working on it, please create an issue for the same and I will finish the project as I have the ideas mostly finalised(can check readme + docs folder).
+
 # Leave Management
 
 Office needs a leave management software. Took too long to decide which ready made solution to use. Need to practice rails. So, here it is. Basic leave management.
